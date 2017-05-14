@@ -1,0 +1,6 @@
+pyyaml
+lxml
+beautifulsoup4
+git+https://github.com/takeshi0406/natalie_to_twitter
+git+https://github.com/takeshi0406/nataliechecker
+git+https://github.com/takeshi0406/tweetmaker
