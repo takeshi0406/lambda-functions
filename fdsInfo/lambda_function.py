@@ -4,7 +4,7 @@ import twitter as tw
 from tweetmaker import make_url_tweet
 import fdj2today_parser as fdj2
 
-EXEC_SPAN = os.environ['EXEC_SPAN']
+EXEC_SPAN = int(os.environ['EXEC_SPAN'])
 API_ENV_KEY = ['TOKEN', 'TOKEN_SECRET', 'CONSUMER_KEY', 'CONSUMER_SECRET']
 
 
