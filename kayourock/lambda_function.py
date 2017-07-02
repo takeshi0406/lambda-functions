@@ -23,7 +23,7 @@ def lambda_handler(event, context):
 def _read_config(target):
     with open(f'./config/{target}.txt') as f:
         texts = f.read()
-    return [x.strip() for x in texts.split()]
+    return [x.strip() for x in texts.split('\n')]
 
 
 def _is_target(stopwords, stopaccounts, stopclients, tweet):
@@ -59,7 +59,10 @@ class TwitterClient(object):
                         self._post_retweet(tweet.id)
 
     def _search_tweet(self, term):
-        return self.client.GetSearch(term=term, count=COUNT, result_type='recent')
+        # return self.client.GetSearch(term=term, count=COUNT, result_type='recent')
+        a = self.client.GetSearch(term=term, count=COUNT, result_type='recent')
+        print(a)
+        return a
 
     def _post_retweet(self, tweet_id):
         try:
