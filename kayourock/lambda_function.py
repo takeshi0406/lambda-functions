@@ -7,7 +7,7 @@ import twitter
 
 
 API_ENV_KEY = ['CONSUMER_KEY', 'CONSUMER_SECRET', 'ACCESS_TOKEN_KEY', 'ACCESS_TOKEN_SECRET']
-CONFIGS = ['stopwords', 'stopaccounts', 'stopclients']
+CONFIGS = ['stopwords', 'stopaccounts']
 COUNT = 100
 
 
@@ -26,7 +26,7 @@ def _read_config(target):
 
 
 def _is_target(stopwords, stopaccounts, tweet):
-    if 'bot' in tweet.user.sceen_name:
+    if 'bot' in tweet.user.screen_name:
         return False
     elif any(wrd in tweet.text for wrd in stopwords):
         return False
@@ -51,10 +51,7 @@ class TwitterClient(object):
                         self._post_retweet(tweet.id)
 
     def _search_tweet(self, term):
-        # return self.client.GetSearch(term=term, count=COUNT, result_type='recent')
-        a = self.client.GetSearch(term=term, count=COUNT, result_type='recent')
-        print(a)
-        return a
+        return self.client.GetSearch(term=term, count=COUNT, result_type='recent')
 
     def _post_retweet(self, tweet_id):
         try:
