@@ -69,7 +69,3 @@ class TwitterClient(object):
             self.client.PostRetweet(tweet_id)
         except:
             print(f'{tweet_id}は既にリツイートされています')
-
-
-if __name__ == '__main__':
-    lambda_handler(None, None)
