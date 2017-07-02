@@ -4,7 +4,6 @@ from datetime import datetime
 from functools import partial
 
 import twitter
-from bs4 import BeautifulSoup
 
 
 API_ENV_KEY = ['CONSUMER_KEY', 'CONSUMER_SECRET', 'ACCESS_TOKEN_KEY', 'ACCESS_TOKEN_SECRET']
@@ -26,7 +25,7 @@ def _read_config(target):
     return [x.strip() for x in texts.split('\n')]
 
 
-def _is_target(stopwords, stopaccounts, stopclients, tweet):
+def _is_target(stopwords, stopaccounts, tweet):
     if 'bot' in tweet.user.sceen_name:
         return False
     elif any(wrd in tweet.text for wrd in stopwords):
@@ -35,14 +34,7 @@ def _is_target(stopwords, stopaccounts, stopclients, tweet):
         return False
     elif len(tweet.urls) <= 0:
         return False
-    elif _parse_client_name(tweet) in stopclients:
-        return False
     return True
-
-
-def _parse_client_name(tweet):
-    soup = BeautifulSoup(tweet, 'lxml')
-    return soup.text
 
 
 class TwitterClient(object):
